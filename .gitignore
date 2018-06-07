@@ -1,0 +1,9 @@
+# Idea specific files
+.idea
+*.iml
+
+# Results file
+results
+
+# Cmake builds dir
+cmake-build*
