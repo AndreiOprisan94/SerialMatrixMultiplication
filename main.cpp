@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
     int matrixDimension = atoi(argv[1]);
 
-    cout << "Matrix Dimension is " << matrixDimension;
+    cout << "Matrix Dimension is " << matrixDimension << flush;
 
     int **firstMatrix;
     int **secondMatrix;
