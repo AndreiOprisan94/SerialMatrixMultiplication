@@ -9,8 +9,6 @@
 
 using namespace std;
 
-static const char* const RESULT_PATH_ENV_NAME = "PPC_SERIAL_RESULT_PATH";
-
 static int** multiplyMatrix(int** lhs, int** rhs, int matrixDimension);
 
 int main(int argc, char* argv[]) {
@@ -37,13 +35,6 @@ int main(int argc, char* argv[]) {
     populateMatrixWithOnes(secondMatrix, matrixDimension);
 
     matrixMultiplicationResult = multiplyMatrix(firstMatrix, secondMatrix, matrixDimension);
-
-    const auto resultPath = getenv(RESULT_PATH_ENV_NAME);
-    ofstream destination(resultPath);
-
-    cout << "Saving serial computation results to: " << resultPath << endl << flush;
-    printMatrix(destination, matrixMultiplicationResult, matrixDimension);
-    destination.close();
 
     freeMatrix(firstMatrix, matrixDimension);
     freeMatrix(secondMatrix, matrixDimension);
