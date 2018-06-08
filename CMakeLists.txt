@@ -3,4 +3,4 @@ project(SerialMatrixMultiplication)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(SerialMatrixMultiplication main.cpp)
+add_executable(SerialMatrixMultiplication main.cpp utils.h utils.cpp)
