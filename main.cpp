@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdlib>
+
 #include "utils.h"
 
 using namespace std;
 
-static const string RESULTS_FILE_NAME = "../results";
+static const char* const RESULT_PATH_ENV_NAME = "PPC_SERIAL_RESULT_PATH";
 
 static int** multiplyMatrix(int** lhs, int** rhs, int matrixDimension);
 
@@ -18,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     int matrixDimension = atoi(argv[1]);
 
-    cout << "Matrix Dimension is " << matrixDimension << flush;
+    cout << "[Serial] Matrix multiplication with square matrix of dimension:  " << matrixDimension << endl << flush;
 
     int **firstMatrix;
     int **secondMatrix;
@@ -32,7 +34,10 @@ int main(int argc, char* argv[]) {
 
     matrixMultiplicationResult = multiplyMatrix(firstMatrix, secondMatrix, matrixDimension);
 
-    ofstream destination(RESULTS_FILE_NAME);
+    const auto resultPath = getenv(RESULT_PATH_ENV_NAME);
+    ofstream destination(resultPath);
+
+    cout << "Saving serial computation results to: " << resultPath << endl << flush;
     printMatrix(destination, matrixMultiplicationResult, matrixDimension);
     destination.close();
 
