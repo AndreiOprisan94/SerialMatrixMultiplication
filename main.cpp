@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <cstdio>
+#include <ctime>
 
 #include "utils.h"
 
@@ -19,6 +21,8 @@ int main(int argc, char* argv[]) {
     }
 
     int matrixDimension = atoi(argv[1]);
+
+    const clock_t begin = clock();
 
     cout << "[Serial] Matrix multiplication with square matrix of dimension:  " << matrixDimension << endl << flush;
 
@@ -44,6 +48,11 @@ int main(int argc, char* argv[]) {
     freeMatrix(firstMatrix, matrixDimension);
     freeMatrix(secondMatrix, matrixDimension);
     freeMatrix(matrixMultiplicationResult, matrixDimension);
+
+    const clock_t end = clock();
+    const double timeSpent = ((double) end - begin) / CLOCKS_PER_SEC;
+    printf("[SERIAL] Time=%f&MatrixSize=%d", timeSpent, matrixDimension);
+    fflush(stdout);
 
     return 0;
 }
